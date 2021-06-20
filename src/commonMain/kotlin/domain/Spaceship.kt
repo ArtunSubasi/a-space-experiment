@@ -4,7 +4,7 @@ import kotlin.math.abs
 
 class Spaceship(
     val acceleration: Double = 0.2,
-    val rotationPower: Double = 0.1) {
+    val rotationPower: Double = 0.05) {
 
     var steeringWheelPosition = 0.0
         private set

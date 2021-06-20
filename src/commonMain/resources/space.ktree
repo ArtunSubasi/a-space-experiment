@@ -1,0 +1,10 @@
+<ktree width="1280.0" height="1280.0" gridWidth="10" gridHeight="10">
+	<solidrect x="300.0" y="340.0" width="10.0" height="420.0">
+		<__ex_physics friction="0.2" restitution="0.2"/>
+	</solidrect>
+	<solidrect x="440.0" y="460.0000000000002" width="140.0" height="300.0"/>
+	<solidrect x="300.0000000000001" y="239.99999999999991" width="470.0" height="100.0"/>
+	<solidrect x="670.0" y="340.0" width="100.0" height="100.0"/>
+	<solidrect x="580.0" y="570.0" width="70.0" height="190.0"/>
+	<solidrect x="750.0000000000001" y="439.99999999999994" width="20.0" height="320.0"/>
+</ktree>
