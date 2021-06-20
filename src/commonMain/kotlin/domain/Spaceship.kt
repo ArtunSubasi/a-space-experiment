@@ -1,6 +1,7 @@
 package domain
 
 import kotlin.math.abs
+import kotlin.math.max
 
 class Spaceship(
     val acceleration: Double = 0.05,
@@ -12,7 +13,10 @@ class Spaceship(
     var thrusterPosition = 0.0
         private set
 
-    var velocityInSpokPerSpaceTicks = 0.0
+    var velocityInSpoksPerSpaceTicks = 0.0
+        private set
+
+    var maxSpeedInSpoksPerSpaceTicks = 0.0
         private set
 
     var rotationInDegreePerSpaceTicks = 0.0
@@ -27,9 +31,11 @@ class Spaceship(
     fun advanceOneSpaceTick(steeringWheelPosition: Double, thrusterPosition: Double) {
         this.steeringWheelPosition = steeringWheelPosition
         this.thrusterPosition = thrusterPosition
-        velocityInSpokPerSpaceTicks += acceleration * thrusterPosition
+        velocityInSpoksPerSpaceTicks += acceleration * thrusterPosition
+        val speedInSpotPerSpaceTicks = abs(velocityInSpoksPerSpaceTicks)
         rotationInDegreePerSpaceTicks += rotationPower * steeringWheelPosition
-        spoksTravelledSinceStart += abs(velocityInSpokPerSpaceTicks)
+        spoksTravelledSinceStart += speedInSpotPerSpaceTicks
+        maxSpeedInSpoksPerSpaceTicks = max(speedInSpotPerSpaceTicks, maxSpeedInSpoksPerSpaceTicks)
         spaceTicksSoFar++
     }
 

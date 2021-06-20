@@ -1,9 +1,7 @@
 import com.soywiz.klock.milliseconds
-import com.soywiz.klock.seconds
 import com.soywiz.korev.Key
 import com.soywiz.korge.Korge
 import com.soywiz.korge.view.*
-import com.soywiz.korge.view.ktree.KTreeRoot
 import com.soywiz.korge.view.ktree.readKTree
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.format.readBitmap
@@ -11,6 +9,8 @@ import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.*
 import com.soywiz.korma.math.roundDecimalPlaces
 import domain.Spaceship
+import kotlin.math.max
+import kotlin.math.min
 
 suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2b"]) {
 
@@ -19,31 +19,38 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 
 	val input = views.input
 	var spaceship = Spaceship()
-	var collision = false
 	var finishedLaps = 0
+	var fastestLapTimeInSpaceTicks = 0
+	var maxSpeedInSpoks = 0.0
 
 	text("") {
 		addFixedUpdater(100.milliseconds) {
-			text = "Velocity: " + spaceship.velocityInSpokPerSpaceTicks.roundDecimalPlaces(2)
+			text = "Space ticks: " + spaceship.spaceTicksSoFar
 		}
 	}
 	text("") {
 		y = 20.0
 		addFixedUpdater(100.milliseconds) {
-			text = "Rotation: " + spaceship.rotationInDegreePerSpaceTicks.roundDecimalPlaces(2)
+			text = "Velocity in spoks per space ticks: " + spaceship.velocityInSpoksPerSpaceTicks.roundDecimalPlaces(2)
 		}
 	}
-
 	text("") {
 		y = 40.0
 		addFixedUpdater(100.milliseconds) {
-			text = "Collision: $collision"
+			maxSpeedInSpoks = max(maxSpeedInSpoks, spaceship.maxSpeedInSpoksPerSpaceTicks).roundDecimalPlaces(2)
+			text = "Max speed in spoks per space ticks: " + maxSpeedInSpoks
 		}
 	}
 	text("") {
 		y = 60.0
 		addFixedUpdater(100.milliseconds) {
 			text = "Finished laps: $finishedLaps"
+		}
+	}
+	text("") {
+		y = 80.0
+		addFixedUpdater(100.milliseconds) {
+			text = "Fast finish time in space ticks: $fastestLapTimeInSpaceTicks"
 		}
 	}
 
@@ -53,12 +60,12 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 		goToStartPosition()
 
 		onCollisionShape(filter = { it is SolidRect }) {
+			if (it.name == "finishLane") {
+				finishedLaps++
+				fastestLapTimeInSpaceTicks = min(fastestLapTimeInSpaceTicks, spaceship.spaceTicksSoFar)
+			}
 			spaceship = Spaceship()
 			goToStartPosition()
-			if (it.name == "finishLane") finishedLaps++
-		}
-		onCollisionShapeExit(filter = { it is SolidRect || it is Ellipse}) {
-			collision = false
 		}
 
 		addUpdater {
@@ -79,8 +86,8 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 			spaceship.advanceOneSpaceTick(steeringWheelPosition, thrusterPosition)
 
 			rotation += spaceship.rotationInDegreePerSpaceTicks.degrees
-			val xDelta = -sin(rotation) * spaceship.velocityInSpokPerSpaceTicks
-			val yDelta = cos(rotation) * spaceship.velocityInSpokPerSpaceTicks
+			val xDelta = -sin(rotation) * spaceship.velocityInSpoksPerSpaceTicks
+			val yDelta = cos(rotation) * spaceship.velocityInSpoksPerSpaceTicks
 			x -= xDelta
 			y -= yDelta
 		}
