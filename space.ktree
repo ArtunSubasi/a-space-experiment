@@ -1,0 +1,22 @@
+<ktree width="1280.0" height="1000.0" gridWidth="10" gridHeight="10">
+	<solidrect y="340.0" width="10.0" height="550.0">
+		<__ex_physics friction="0.2" restitution="0.2"/>
+	</solidrect>
+	<solidrect x="110.0" y="460.0" width="140.0" height="300.0"/>
+	<solidrect y="109.99999999999997" width="450.0" height="230.0"/>
+	<solidrect x="250.0" y="460.0" skewY="50.0" width="70.0" height="300.0"/>
+	<solidrect x="400.00000000000006" y="340.0" skewX="-15.120000000000001" width="50.0" height="320.0"/>
+	<solidrect x="290.0" y="779.9999999999999" width="450.0" height="90.0"/>
+	<solidrect x="600.0" y="340.0" skewX="-15.120000000000001" width="20.0" height="460.0"/>
+	<solidrect x="450.0000000000001" y="110.0" width="830.0" height="20.0"/>
+	<solidrect x="600.0" y="340.0" rotation="-17.28" width="320.0" height="10.0"/>
+	<solidrect x="1100.0" y="500.0" rotation="-129.6" width="320.0" height="10.0"/>
+	<solidrect x="1262.2948675722419" y="886.3742398974869" rotation="-129.6" width="310.0" height="20.0"/>
+	<solidrect x="1100.0" y="660.0" rotation="-212.177329582429" width="250.0" height="30.0"/>
+	<solidrect x="869.9999999999998" y="760.0000000000002" width="40.0" height="200.0"/>
+	<solidrect x="1259.9999999999998" y="130.00000000000006" width="20.0" height="750.0">
+		<__ex_physics friction="0.2" restitution="0.2"/>
+	</solidrect>
+	<solidrect y="870.0000000000001" width="740.0" height="90.0"/>
+	<solidrect name="finishLane" colorMul="#009bffff" x="740.0000000000002" y="930.0000000000001" width="130.0" height="30.0"/>
+</ktree>
