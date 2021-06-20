@@ -62,7 +62,10 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 		onCollisionShape(filter = { it is SolidRect }) {
 			if (it.name == "finishLane") {
 				finishedLaps++
-				fastestLapTimeInSpaceTicks = min(fastestLapTimeInSpaceTicks, spaceship.spaceTicksSoFar)
+				fastestLapTimeInSpaceTicks = when (fastestLapTimeInSpaceTicks) {
+					0 -> spaceship.spaceTicksSoFar
+					else -> min(fastestLapTimeInSpaceTicks, spaceship.spaceTicksSoFar)
+				}
 			}
 			spaceship = Spaceship()
 			goToStartPosition()
