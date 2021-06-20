@@ -38,7 +38,7 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 		y = 40.0
 		addFixedUpdater(100.milliseconds) {
 			maxSpeedInSpoks = max(maxSpeedInSpoks, spaceship.maxSpeedInSpoksPerSpaceTicks).roundDecimalPlaces(2)
-			text = "Max speed in spoks per space ticks: " + maxSpeedInSpoks
+			text = "Max speed in spoks per space ticks: $maxSpeedInSpoks"
 		}
 	}
 	text("") {
