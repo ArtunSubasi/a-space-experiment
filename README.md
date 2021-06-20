@@ -2,6 +2,8 @@
 
 Just playing around with KorGe. This may be 2D space race game in the future.
 
+### [🎮 Run on Browser 🎮](https://artunsubasi.github.io/a-space-experiment/)
+
 The rest of this README is based on the Hello World Template for the KorGe game engine. Using gradle with kotlin-dsl.
 You can open this project in IntelliJ IDEA by opening the folder or the build.gradle.kts file.
 
