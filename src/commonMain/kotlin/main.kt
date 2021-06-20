@@ -12,7 +12,7 @@ import com.soywiz.korma.geom.*
 import com.soywiz.korma.math.roundDecimalPlaces
 import domain.Spaceship
 
-suspend fun main() = Korge(width = 1024, height = 1024, bgcolor = Colors["#2b2b2b"]) {
+suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2b"]) {
 
 	val ktree = resourcesVfs["space.ktree"].readKTree(views)
 	addChild(ktree)
@@ -20,6 +20,7 @@ suspend fun main() = Korge(width = 1024, height = 1024, bgcolor = Colors["#2b2b2
 	val input = views.input
 	var spaceship = Spaceship()
 	var collision = false
+	var finishedLaps = 0
 
 	text("") {
 		addFixedUpdater(100.milliseconds) {
@@ -39,16 +40,24 @@ suspend fun main() = Korge(width = 1024, height = 1024, bgcolor = Colors["#2b2b2
 			text = "Collision: $collision"
 		}
 	}
+	text("") {
+		y = 60.0
+		addFixedUpdater(100.milliseconds) {
+			text = "Finished laps: $finishedLaps"
+		}
+	}
 
 
 	image(resourcesVfs["ship_sidesA.png"].readBitmap()) {
 
 		goToStartPosition()
 
-		onCollision(filter = { it is SolidRect }) {
-			collision = true
+		onCollisionShape(filter = { it is SolidRect }) {
+			spaceship = Spaceship()
+			goToStartPosition()
+			if (it.name == "finishLane") finishedLaps++
 		}
-		onCollisionExit(filter = { it is SolidRect }) {
+		onCollisionShapeExit(filter = { it is SolidRect || it is Ellipse}) {
 			collision = false
 		}
 
@@ -83,5 +92,5 @@ private fun Image.goToStartPosition() {
 	rotation = 0.0.degrees
 	anchor(.5, .5)
 	scale(.8)
-	position(430, 800)
+	position(180, 820)
 }
