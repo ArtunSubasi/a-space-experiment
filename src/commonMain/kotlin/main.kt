@@ -1,8 +1,12 @@
 import com.soywiz.klock.milliseconds
+import com.soywiz.korau.sound.PlaybackTimes
+import com.soywiz.korau.sound.readSound
 import com.soywiz.korev.Key
 import com.soywiz.korge.Korge
+import com.soywiz.korge.input.Input
 import com.soywiz.korge.view.*
 import com.soywiz.korge.view.ktree.readKTree
+import com.soywiz.korim.atlas.readAtlas
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.format.readBitmap
 import com.soywiz.korio.file.std.resourcesVfs
@@ -17,11 +21,20 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 	val ktree = resourcesVfs["space.ktree"].readKTree(views)
 	addChild(ktree)
 
+	val spaceSprites = resourcesVfs["sprite_sheet.xml"].readAtlas()
+	val animation = spaceSprites.getSpriteAnimation(prefix = "engine")
+
+	val thrusterSound = resourcesVfs["22455__nathanshadow__thruster-level-ii.wav"].readSound()
+	val explosionSound = resourcesVfs["191694__deleted-user-3544904__explosion-4.wav"].readSound()
+
 	val input = views.input
 	var spaceship = Spaceship()
 	var finishedLaps = 0
 	var fastestLapTimeInSpaceTicks = 0
 	var maxSpeedInSpoks = 0.0
+
+	val thrusterSoundChannel = thrusterSound.playForever()
+	thrusterSoundChannel.pause()
 
 	text("") {
 		addFixedUpdater(100.milliseconds) {
@@ -54,8 +67,7 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 		}
 	}
 
-
-	image(resourcesVfs["ship_sidesA.png"].readBitmap()) {
+	val spaceshipView = image(resourcesVfs["ship_sidesA.png"].readBitmap()) {
 
 		goToStartPosition()
 
@@ -69,6 +81,7 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 			}
 			spaceship = Spaceship()
 			goToStartPosition()
+			explosionSound.play(views.coroutineContext)
 		}
 
 		addUpdater {
@@ -86,6 +99,9 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 				input.keys.pressing(Key.RIGHT) -> 1.0
 				else -> 0.0
 			}
+			if (justPressedThrusterKey(input)) thrusterSoundChannel.resume()
+			if (justReleasedThrusterKey(input)) thrusterSoundChannel.pause()
+
 			spaceship.advanceOneSpaceTick(steeringWheelPosition, thrusterPosition)
 
 			rotation += spaceship.rotationInDegreePerSpaceTicks.degrees
@@ -96,7 +112,32 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 		}
 
 	}
+
+	sprite(animation) {
+		scale(0.3)
+		addUpdater {
+			setPositionRelativeTo(spaceshipView, Point(-8, 25))
+			rotation = spaceshipView.rotation
+			if (spaceship.thrusterPosition > 0) {
+				visible = true
+				playAnimationLooped(spriteDisplayTime = 150.0.milliseconds)
+			} else {
+				visible = false
+			}
+		}
+	}
 }
+
+private fun justPressedThrusterKey(input: Input) = input.keys.justPressed(Key.UP)
+		|| input.keys.justPressed(Key.DOWN)
+		|| input.keys.justPressed(Key.LEFT)
+		|| input.keys.justPressed(Key.RIGHT)
+
+private fun justReleasedThrusterKey(input: Input) = input.keys.justReleased(Key.UP)
+		|| input.keys.justReleased(Key.DOWN)
+		|| input.keys.justReleased(Key.LEFT)
+		|| input.keys.justReleased(Key.RIGHT)
+
 
 private fun Image.goToStartPosition() {
 	rotation = 0.0.degrees
