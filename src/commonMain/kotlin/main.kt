@@ -113,14 +113,38 @@ suspend fun main() = Korge(width = 1300, height = 1000, bgcolor = Colors["#2b2b2
 
 	}
 
+	// Thruster sprite
 	sprite(animation) {
 		scale(0.3)
+		playAnimationLooped(spriteDisplayTime = 150.0.milliseconds)
 		addUpdater {
-			setPositionRelativeTo(spaceshipView, Point(-8, 25))
-			rotation = spaceshipView.rotation
 			if (spaceship.thrusterPosition > 0) {
+				setPositionRelativeTo(spaceshipView, Point(-8, 25))
+				rotation = spaceshipView.rotation
 				visible = true
-				playAnimationLooped(spriteDisplayTime = 150.0.milliseconds)
+			} else if (spaceship.thrusterPosition < 0) {
+				setPositionRelativeTo(spaceshipView, Point(6, -30))
+				rotation = spaceshipView.rotation + Angle.fromDegrees(180)
+				visible = true
+			} else {
+				visible = false
+			}
+		}
+	}
+
+	// Rotation sprite
+	sprite(animation) {
+		scale(0.3)
+		playAnimationLooped(spriteDisplayTime = 150.0.milliseconds)
+		addUpdater {
+			if (spaceship.steeringWheelPosition > 0) {
+				setPositionRelativeTo(spaceshipView, Point(-30, 10))
+				rotation = spaceshipView.rotation + Angle.fromDegrees(80)
+				visible = true
+			} else if (spaceship.steeringWheelPosition < 0) {
+				setPositionRelativeTo(spaceshipView, Point(25, 25))
+				rotation = spaceshipView.rotation - Angle.fromDegrees(80)
+				visible = true
 			} else {
 				visible = false
 			}
