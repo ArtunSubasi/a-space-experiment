@@ -6,9 +6,11 @@ import com.soywiz.korge.view.Container
 import com.soywiz.korge.view.addUpdater
 import com.soywiz.korge.view.text
 import ui.model.GameState
+import ui.views.GameInfo
 
 class GameOverScene(private val gameState: GameState) : Scene() {
     override suspend fun Container.sceneInit() {
+        addChild(GameInfo(gameState))
         text("Press space to try again") {
             x = 550.0
             y = 400.0

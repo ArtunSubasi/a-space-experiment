@@ -11,10 +11,9 @@ import com.soywiz.korim.atlas.readAtlas
 import com.soywiz.korim.format.readBitmap
 import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.*
-import com.soywiz.korma.math.roundDecimalPlaces
 import domain.Spaceship
 import ui.model.GameState
-import kotlin.math.max
+import ui.views.GameInfo
 import kotlin.math.min
 
 class MainScene(private val gameState: GameState) : Scene() {
@@ -36,37 +35,7 @@ class MainScene(private val gameState: GameState) : Scene() {
 		val thrusterSoundChannel = thrusterSound.playForever()
 		thrusterSoundChannel.pause()
 
-		text("") {
-			addFixedUpdater(100.milliseconds) {
-				text = "Space ticks: " + gameState.spaceship.spaceTicksSoFar
-			}
-		}
-		text("") {
-			y = 20.0
-			addFixedUpdater(100.milliseconds) {
-				text = "Velocity in spoks per space ticks: " + gameState.spaceship.velocityInSpoksPerSpaceTicks.roundDecimalPlaces(2)
-			}
-		}
-		text("") {
-			y = 40.0
-			addFixedUpdater(100.milliseconds) {
-				gameState.stats.maxSpeedInSpoks = max(gameState.stats.maxSpeedInSpoks,
-					gameState.spaceship.maxSpeedInSpoksPerSpaceTicks).roundDecimalPlaces(2)
-				text = "Max speed in spoks per space ticks: ${gameState.stats.maxSpeedInSpoks}"
-			}
-		}
-		text("") {
-			y = 60.0
-			addFixedUpdater(100.milliseconds) {
-				text = "Finished laps: ${gameState.stats.finishedLaps}"
-			}
-		}
-		text("") {
-			y = 80.0
-			addFixedUpdater(100.milliseconds) {
-				text = "Fast finish time in space ticks: ${gameState.stats.fastestLapTimeInSpaceTicks}"
-			}
-		}
+		addChild(GameInfo(gameState))
 
 		val spaceshipView = image(resourcesVfs["ship_sidesA.png"].readBitmap()) {
 
