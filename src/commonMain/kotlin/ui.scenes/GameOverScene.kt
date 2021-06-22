@@ -12,8 +12,9 @@ class GameOverScene(private val gameState: GameState) : Scene() {
     override suspend fun Container.sceneInit() {
         addChild(GameInfo(gameState))
         text("Press space to try again") {
-            x = 550.0
-            y = 400.0
+            x = 495.0
+            y = 390.0
+            textSize = 30.0
         }
         addUpdater {
             if (views.input.keys.justPressed(Key.SPACE)) {
