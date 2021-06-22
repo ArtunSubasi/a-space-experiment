@@ -8,7 +8,7 @@ import com.soywiz.korma.math.roundDecimalPlaces
 import ui.model.GameState
 import kotlin.math.max
 
-class GameInfo(private val gameState: GameState): Container() {
+class GameInfoView(private val gameState: GameState): Container() {
 
 	init {
 		text("") {

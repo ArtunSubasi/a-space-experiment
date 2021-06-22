@@ -13,7 +13,7 @@ import com.soywiz.korio.file.std.resourcesVfs
 import com.soywiz.korma.geom.*
 import domain.Spaceship
 import ui.model.GameState
-import ui.views.GameInfo
+import ui.views.GameInfoView
 import kotlin.math.min
 
 class MainScene(private val gameState: GameState) : Scene() {
@@ -35,7 +35,7 @@ class MainScene(private val gameState: GameState) : Scene() {
 		val thrusterSoundChannel = thrusterSound.playForever()
 		thrusterSoundChannel.pause()
 
-		addChild(GameInfo(gameState))
+		addChild(GameInfoView(gameState))
 
 		val spaceshipView = image(resourcesVfs["ship_sidesA.png"].readBitmap()) {
 
