@@ -4,7 +4,8 @@ import domain.Spaceship
 
 data class GameState(
         var spaceship: Spaceship = Spaceship(),
-        var stats: GameStats = GameStats()
+        var stats: GameStats = GameStats(),
+        var lapJustFinished: Boolean = false // TODO replace this flag after introducing an event bus
 )
 
 data class GameStats(

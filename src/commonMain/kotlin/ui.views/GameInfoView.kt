@@ -39,7 +39,7 @@ class GameInfoView(private val gameState: GameState): Container() {
 		text("") {
 			y = 80.0
 			addFixedUpdater(100.milliseconds) {
-				text = "Fast finish time in space ticks: ${gameState.stats.fastestLapTimeInSpaceTicks}"
+				text = "Best finish time in space ticks: ${gameState.stats.fastestLapTimeInSpaceTicks}"
 			}
 		}
 	}

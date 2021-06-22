@@ -28,6 +28,8 @@ class Spaceship(
     var spaceTicksSoFar = 0
         private set
 
+    var crashed = false
+
     fun advanceOneSpaceTick(steeringWheelPosition: Double, thrusterPosition: Double) {
         this.steeringWheelPosition = steeringWheelPosition
         this.thrusterPosition = thrusterPosition
