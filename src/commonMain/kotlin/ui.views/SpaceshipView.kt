@@ -29,12 +29,7 @@ class SpaceshipView(spaceshipBitmap: Bitmap,
 					gameState.lapJustFinished = true
 				} else {
 					gameState.spaceship.crashed = true
-					//explosionSound.play(views.coroutineContext)
 				}
-
-				// TODO scene change should not be done here
-				//thrusterSoundChannel.pause()
-				//sceneContainer.changeToAsync(GameOverScene::class)
 			}
 
 			addUpdater {
