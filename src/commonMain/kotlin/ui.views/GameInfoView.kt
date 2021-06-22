@@ -10,21 +10,23 @@ import kotlin.math.max
 
 class GameInfoView(private val gameState: GameState): Container() {
 
+	private val updateInterval = 100.milliseconds
+
 	init {
 		text("") {
-			addFixedUpdater(100.milliseconds) {
+			addFixedUpdater(updateInterval) {
 				text = "Space ticks: " + gameState.spaceship.spaceTicksSoFar
 			}
 		}
 		text("") {
 			y = 20.0
-			addFixedUpdater(100.milliseconds) {
+			addFixedUpdater(updateInterval) {
 				text = "Velocity in spoks per space ticks: " + gameState.spaceship.velocityInSpoksPerSpaceTicks.roundDecimalPlaces(2)
 			}
 		}
 		text("") {
 			y = 40.0
-			addFixedUpdater(100.milliseconds) {
+			addFixedUpdater(updateInterval) {
 				gameState.stats.maxSpeedInSpoks = max(gameState.stats.maxSpeedInSpoks,
 					gameState.spaceship.maxSpeedInSpoksPerSpaceTicks).roundDecimalPlaces(2)
 				text = "Max speed in spoks per space ticks: ${gameState.stats.maxSpeedInSpoks}"
@@ -32,14 +34,21 @@ class GameInfoView(private val gameState: GameState): Container() {
 		}
 		text("") {
 			y = 60.0
-			addFixedUpdater(100.milliseconds) {
+			addFixedUpdater(updateInterval) {
 				text = "Finished laps: ${gameState.stats.finishedLaps}"
 			}
 		}
 		text("") {
 			y = 80.0
-			addFixedUpdater(100.milliseconds) {
+			addFixedUpdater(updateInterval) {
 				text = "Best finish time in space ticks: ${gameState.stats.fastestLapTimeInSpaceTicks}"
+			}
+		}
+
+		text("") {
+			y = 100.0
+			addFixedUpdater(updateInterval) {
+				text = "Checkpoints reached: ${gameState.checkpointReached}"
 			}
 		}
 	}

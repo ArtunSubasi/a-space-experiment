@@ -20,6 +20,7 @@ class MainScene(private val gameState: GameState) : Scene() {
 
 	override suspend fun Container.sceneInit() {
 		gameState.spaceship = Spaceship()
+		gameState.checkpointReached = 0
 
 		val gameMapKTree = resourcesVfs["space.ktree"].readKTree(views)
 		val spaceSprites = resourcesVfs["sprite_sheet.xml"].readAtlas()

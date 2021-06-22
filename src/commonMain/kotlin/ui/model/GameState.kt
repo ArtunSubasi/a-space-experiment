@@ -5,6 +5,7 @@ import domain.Spaceship
 data class GameState(
         var spaceship: Spaceship = Spaceship(),
         var stats: GameStats = GameStats(),
+        var checkpointReached: Int = 0,
         var lapJustFinished: Boolean = false // TODO replace this flag after introducing an event bus
 )
 

@@ -13,6 +13,34 @@
 	<solidrect x="869.9999999999998" y="650.0000000000002" width="40.0" height="200.0"/>
 	<solidrect x="1259.9999999999998" y="20.00000000000006" width="20.0" height="750.0"/>
 	<solidrect y="800.0000000000001" width="740.0" height="50.0"/>
-	<solidrect name="finishLane" colorMul="#009bffff" x="740.0000000000002" y="820.0000000000001" width="130.0" height="30.0"/>
 	<solidrect x="400.00000000000017" width="50.0" height="230.0"/>
+	<solidrect name="checkpoint1" x="10.0" y="740.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint2" colorMul="#ffffff04" alpha="0.01" x="10.0" y="682.0" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint3" x="10.0" y="618.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint4" x="10.0" y="546.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint5" x="10.0" y="480.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint6" x="10.0" y="424.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint7" x="10.0" y="372.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint8" x="50.0" y="242.0" alpha="0.01" rotation="32.17070500834087" width="230.0" height="1.0"/>
+	<solidrect name="checkpoint9" x="252.0" y="376.0" alpha="0.01" width="1.0" height="-150.0"/>
+	<solidrect name="checkpoint10" x="254.0" y="368.0" alpha="0.01" width="220.0" height="1.0"/>
+	<solidrect name="checkpoint11" x="260.0" y="452.0" alpha="0.01" width="240.0" height="1.0"/>
+	<solidrect name="checkpoint12" x="300.0" y="534.0" alpha="0.01" width="190.0" height="1.0"/>
+	<solidrect name="checkpoint13" x="502.0" y="682.0" alpha="0.01" width="1.0" height="-150.0"/>
+	<solidrect name="checkpoint14" x="500.0" y="530.0" alpha="0.01" width="190.0" height="1.0"/>
+	<solidrect name="checkpoint15" x="500.0" y="450.0" alpha="0.01" width="170.0" height="1.0"/>
+	<solidrect name="checkpoint16" x="450.0" y="360.0" alpha="0.01" width="200.0" height="1.0"/>
+	<solidrect name="checkpoint17" x="430.0" y="270.0" alpha="0.01" width="190.0" height="1.0"/>
+	<solidrect name="checkpoint18" alpha="0.01" x="493.4265414353755" y="22.435495076457975" rotation="52.442475475661716" width="260.0" height="0.0"/>
+	<solidrect name="checkpoint19" alpha="0.01" x="791.1918396075542" y="22.67408169130009" rotation="-290.18469192734096" width="150.0" height="-10.0"/>
+	<solidrect name="checkpoint20" alpha="0.01" x="910.0" y="140.0" rotation="-40.7594803455954" width="190.0" height="1.0"/>
+	<solidrect name="checkpoint21" alpha="0.01" x="978.6756506052211" y="229.8213408654781" rotation="-41.875746379444614" width="320.0" height="10.0"/>
+	<solidrect name="checkpoint22" alpha="0.01" x="1050.0" y="319.9999999999999" rotation="317.4582347303823" width="280.0" height="10.0"/>
+	<solidrect name="checkpoint23" alpha="0.01" x="1099.9999999999998" y="393.99999999999994" width="160.0" height="-10.0"/>
+	<solidrect name="checkpoint24" alpha="0.01" x="1089.9999999999998" y="534.0" width="-10.0" height="-150.0"/>
+	<solidrect name="checkpoint25" alpha="0.01" x="991.9999999999993" y="594.5257611131669" rotation="-39.15602467414117" width="10.0" height="-490.0"/>
+	<solidrect name="checkpoint26" alpha="0.01" x="926.0" y="643.9999999999999" rotation="229.70204306174168" width="450.0" height="1.0"/>
+	<solidrect name="checkpoint27" alpha="0.01" x="728.0000000000005" y="655.9999999999999" width="160.0" height="0.0"/>
+	<solidrect name="checkpoint28" alpha="0.01" x="702.0" y="746.0" width="190.0" height="1.0"/>
+	<solidrect name="finishLane" colorMul="#009bffff" x="740.0000000000002" y="820.0000000000001" width="130.0" height="30.0"/>
 </ktree>
