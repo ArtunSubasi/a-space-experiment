@@ -30,6 +30,8 @@ class Spaceship(
 
     var crashed = false
 
+    val distanceSensors = DistanceSensors()
+
     fun advanceOneSpaceTick(steeringWheelPosition: Double, thrusterPosition: Double) {
         this.steeringWheelPosition = steeringWheelPosition
         this.thrusterPosition = thrusterPosition

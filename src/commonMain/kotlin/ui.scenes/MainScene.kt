@@ -36,7 +36,7 @@ class MainScene(private val gameState: GameState) : Scene() {
 
 		addChild(gameMapKTree)
 		addChild(GameInfoView(gameState))
-		addChild(SpaceshipView(spaceshipBitmap, thrusterAnimation, gameState))
+		addChild(SpaceshipView(spaceshipBitmap, thrusterAnimation, gameMapKTree, gameState))
 
 		addUpdater {
 			val thrusterPosition = when {
@@ -49,6 +49,8 @@ class MainScene(private val gameState: GameState) : Scene() {
 				input.keys.pressing(Key.RIGHT) -> 1.0
 				else -> 0.0
 			}
+
+			if (input.keys.justPressed(Key.S)) gameState.config.drawSensors = !gameState.config.drawSensors
 
 			if (gameState.lapJustFinished || gameState.spaceship.crashed) {
 				if (gameState.spaceship.crashed) explosionSound.play(views.coroutineContext)
