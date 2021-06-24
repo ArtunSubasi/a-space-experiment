@@ -8,10 +8,11 @@ import com.soywiz.korge.view.text
 import ui.model.GameState
 import ui.views.GameInfoView
 
-class GameOverScene(private val gameState: GameState) : Scene() {
+class StartScene(private val gameState: GameState) : Scene() {
     override suspend fun Container.sceneInit() {
         addChild(GameInfoView(gameState))
-        text("Press space to try again") {
+        val textSuffix = if (gameState.spaceship.crashed) "try again" else "start"
+        text("Press space to $textSuffix") {
             x = 495.0
             y = 390.0
             textSize = 30.0

@@ -56,7 +56,7 @@ class MainScene(private val gameState: GameState) : Scene() {
 				if (gameState.spaceship.crashed) explosionSound.play(views.coroutineContext)
 				gameState.lapJustFinished = false
 				thrusterSoundChannel.pause()
-				sceneContainer.changeToAsync(GameOverScene::class)
+				sceneContainer.changeToAsync(StartScene::class)
 
 			} else {
 				// TODO find a better place to handle sounds
