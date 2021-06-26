@@ -50,18 +50,20 @@ class MainScene(private val gameState: GameState) : Scene() {
 				else -> 0.0
 			}
 
-			if (input.keys.justPressed(Key.S)) gameState.config.drawSensors = !gameState.config.drawSensors
+			if (input.keys.justPressed(Key.D)) gameState.config.drawSensors = !gameState.config.drawSensors
+			if (input.keys.justPressed(Key.S)) gameState.config.soundOn = !gameState.config.soundOn
 
 			if (gameState.lapJustFinished || gameState.spaceship.crashed) {
-				if (gameState.spaceship.crashed) explosionSound.play(views.coroutineContext)
+				// TODO find a better place to handle sounds. This would also make sound config check more central.
+				if (gameState.config.soundOn && gameState.spaceship.crashed) explosionSound.play(views.coroutineContext)
 				gameState.lapJustFinished = false
 				thrusterSoundChannel.pause()
 				sceneContainer.changeToAsync(StartScene::class)
 
 			} else {
-				// TODO find a better place to handle sounds
-				if (justPressedThrusterKey(input)) thrusterSoundChannel.resume()
-				if (justReleasedThrusterKey(input)) thrusterSoundChannel.pause()
+				// TODO find a better place to handle sounds. This would also make sound config check more central.
+				if (gameState.config.soundOn && justPressedThrusterKey(input)) thrusterSoundChannel.resume()
+				if (!gameState.config.soundOn || justReleasedThrusterKey(input)) thrusterSoundChannel.pause()
 
 				gameState.spaceship.advanceOneSpaceTick(steeringWheelPosition, thrusterPosition)
 			}

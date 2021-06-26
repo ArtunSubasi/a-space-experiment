@@ -17,5 +17,6 @@ data class GameStats(
 )
 
 data class GameConfig(
-        var drawSensors: Boolean = false
+        var drawSensors: Boolean = false,
+        var soundOn: Boolean = true
 )
