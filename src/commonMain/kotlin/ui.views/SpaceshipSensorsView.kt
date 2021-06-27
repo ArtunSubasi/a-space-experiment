@@ -1,10 +1,12 @@
 package ui.views
 
+import com.soywiz.klock.milliseconds
 import com.soywiz.korge.view.*
 import com.soywiz.korim.color.Colors
 import com.soywiz.korim.vector.StrokeInfo
 import com.soywiz.korma.geom.*
 import com.soywiz.korma.geom.vector.line
+import com.soywiz.korma.math.roundDecimalPlaces
 import domain.DistanceSensor
 import ui.model.GameState
 
@@ -25,6 +27,17 @@ class SpaceshipSensorsView(spaceshipImage: Image,
 				clear()
 				visible = gameState.config.drawSensors
 				gameState.spaceship.distanceSensors.forEach { castDistanceRay(spaceshipImage, it, walls) }
+			}
+		}
+		gameState.spaceship.distanceSensors.forEach { sensor ->
+			text("") {
+				addUpdater {
+					visible = gameState.config.drawSensors
+					text = sensor.distance.toInt().toString()
+					val absoluteRayRotation = spaceshipImage.rotation + sensor.distanceSensorType.rayCastingAngleInDegrees.degrees
+					x = spaceshipImage.x + (absoluteRayRotation.sine * 50)
+					y = spaceshipImage.y - (absoluteRayRotation.cosine * 50)
+				}
 			}
 		}
 	}
