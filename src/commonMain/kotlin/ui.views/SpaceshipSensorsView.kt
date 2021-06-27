@@ -35,8 +35,8 @@ class SpaceshipSensorsView(spaceshipImage: Image,
 					visible = gameState.config.drawSensors
 					text = sensor.distance.toInt().toString()
 					val absoluteRayRotation = spaceshipImage.rotation + sensor.distanceSensorType.rayCastingAngleInDegrees.degrees
-					x = spaceshipImage.x + (absoluteRayRotation.sine * 50)
-					y = spaceshipImage.y - (absoluteRayRotation.cosine * 50)
+					x = spaceshipImage.x + (absoluteRayRotation.sine * 50) - 10
+					y = spaceshipImage.y - (absoluteRayRotation.cosine * 50) - 8
 				}
 			}
 		}
