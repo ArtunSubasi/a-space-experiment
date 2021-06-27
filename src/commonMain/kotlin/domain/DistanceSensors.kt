@@ -11,5 +11,7 @@ enum class DistanceSensorType(val rayCastingAngleInDegrees: Int, val rayCastingS
     RIGHT(90, 14),
     FRONT_LEFT(-45, 8),
     FRONT_RIGHT(45, 8),
-    BACK(180, 14)
+    REAR(180, 14),
+    REAR_LEFT(-135, 14),
+    REAR_RIGHT(135, 14)
 }
